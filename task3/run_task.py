@@ -7,5 +7,4 @@ for _ in range(edges_count):
     edges.append([v, to])
 print(*edges)
 cycle = EulerCycleFinder(vertexes_count, edges_count, edges).get_cycle()
-print(*cycle)
-
+print(*cycle[:len(cycle)-1])

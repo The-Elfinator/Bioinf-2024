@@ -88,6 +88,9 @@ class NeedlemanWunschAlgorithm:
                     i -= 1
         return s1[::-1], t1[::-1]
 
+    def get_dp(self):
+        return self._dp
+
     def align(self, s: str, t: str) -> tuple[str, str]:
         if len(s) > len(t):
             b, a = self.align(t, s)

@@ -1,10 +1,24 @@
-from task1.Alignment_algorithms.Sequence_alignment.Needleman_Wunsch_algorithm import NeedlemanWunschAlgorithm
-from blossum_matrix import matrix as blossum_matrix
+from Alignment_algorithms.Sequence_alignment.alignment_with_mem_opt import OptimizedAlignment
+from Alignment_algorithms.Sequence_alignment.Needleman_Wunsch_algorithm import NeedlemanWunschAlgorithm
 
-GAP_SCORE = -5
-s = input()
-t = input()
-algo = NeedlemanWunschAlgorithm(matrix=blossum_matrix, gap_score=GAP_SCORE)
+MATCH = 2
+MISSMATCH = -1
+GAP = -2
+s = "AGTACGCA"
+t = "TATGC"
+algo = NeedlemanWunschAlgorithm(match_score=MATCH, missmatch_score=MISSMATCH, gap_score=GAP)
+# algo = WeightedGapAlign(match_score=MATCH, missmatch_score=MISSMATCH, gap_open=gap_open, gap_cont=gap_cont)
+# algo = OptimizedAlignment(match_score=MATCH, missmatch_score=MISSMATCH, gap_score=GAP)
 A, B = algo.align(s, t)
+dp = algo.get_dp()
+for line in dp:
+    for x in line:
+        print(x, end='\t')
+    print()
+# print(algo.get_max_weight())
 print(A)
 print(B)
+mem_algo = OptimizedAlignment(match_score=MATCH, missmatch_score=MISSMATCH, gap_score=GAP)
+mem_A, mem_B = mem_algo.align(s, t)
+print(mem_A)
+print(mem_B)
